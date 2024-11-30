@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import "../styles/main.scss";
 
 export const metadata = {
-  title: "Amperasa",
+  title: "AmpeRASA Restaurant",
   description: "Palembang Cuisine Restaurant",
 };
 
