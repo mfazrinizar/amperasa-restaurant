@@ -1,0 +1,77 @@
+html,
+body {
+  @apply text-neutral-200;
+  padding: 0;
+  margin: 0;
+  // overflow-x: hidden;
+  font-family: $font-family-base;
+  scroll-behavior: smooth;
+}
+
+.font-brush {
+  font-family: $font-family-serif;
+}
+
+p {
+  letter-spacing: 0.2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@include dark-theme {
+  // @apply text-neutral-100;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.bento {
+  grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr);
+  @include md {
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(
+        150px,
+        1.5fr
+      );
+    grid-template-rows: minmax(50px, 0.8fr) minmax(30px, 0.5fr);
+  }
+}
+
+.featured-section,
+.team-section {
+  .swiper-button-next,
+  .swiper-button-prev {
+    @apply p-4 h-10 w-10 bottom-0 top-auto bg-neutral-900/60 rounded-xl border border-transparent text-neutral-200 bg-neutral-900/20 flex flex-row items-center justify-center gap-2;
+    transition: 0.25s ease all;
+    &:after {
+      @apply text-neutral-200 text-xl;
+    }
+    &:hover {
+      @apply bg-neutral-900/70;
+    }
+  }
+  .swiper-button-next {
+    left: 4rem;
+  }
+  .swiper-button-prev {
+    left: 0;
+  }
+}
+
+.heading-first {
+  @apply text-3xl font-semibold md:text-5xl font-brush ;
+
+}
+
+.heading-second {
+  @apply text-2xl md:text-3xl font-brush;
+}
