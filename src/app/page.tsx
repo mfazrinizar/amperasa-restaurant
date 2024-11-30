@@ -1,8 +1,10 @@
-
-
+import Hero from "@/components/layout/Hero";
+import MainWrapper from "@/components/layout/MainWrapper";
 
 export default function Home() {
   return (
-    <div></div>
+    <MainWrapper className="overflow-x-hidden">
+      <Hero />
+    </MainWrapper>
   );
 }
