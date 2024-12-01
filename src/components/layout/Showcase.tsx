@@ -35,14 +35,14 @@ export default function Showcase({ pb = "md", pt = "md" }: Props) {
 
                 <div className="grid gap-2 sm:gap-6 md:gap-2 lg:gap-6 bento">
                     <ShowcaseTile
-                        tabId={1}
+                        tabId={0}
                         title={"Kapal Selam"}
                         imgSrc={KapalSelamImg}
                         // width={384}
                         // height={384}
                     />
                     <ShowcaseTile
-                        tabId={3}
+                        tabId={2}
                         span={2}
                         title={"Lenjer"}
                         imgSrc={LenjerImg}
@@ -50,14 +50,14 @@ export default function Showcase({ pb = "md", pt = "md" }: Props) {
                         // height={682}
                     />
                     <ShowcaseTile
-                        tabId={0}
+                        tabId={1}
                         title={"Kulit"}
                         imgSrc={KulitImg}
                         // width={384}
                         // height={256}
                     />
                     <ShowcaseTile
-                        tabId={2}
+                        tabId={3}
                         title={"Tekwan"}
                         imgSrc={TekwanImg}
                         // width={384}
@@ -66,16 +66,16 @@ export default function Showcase({ pb = "md", pt = "md" }: Props) {
                     <div className="relative w-full h-full bg-primary-500 text-neutral-100">
                         <div className="flex flex-col justify-center h-full mx-auto text-base font-medium sm:text-lg w-fit sm:mx-0 sm:px-4 lg:px-8 xl:px-16 sm:gap-2 md:gap-0 xl:gap-2 xl:text-2xl">
                             <Link href={"/menu#menu"} className="hover:underline w-fit">
-                                <span onClick={() => setTab(0)}>Kulit</span>
+                                <span onClick={() => setTab(0)}>Kapal Selam</span>
                             </Link>
                             <Link href={"/menu#menu"} className="hover:underline w-fit">
-                                <span onClick={() => setTab(1)}>Kapal Selam</span>
+                                <span onClick={() => setTab(1)}>Kulit</span>
                             </Link>
                             <Link href={"/menu#menu"} className="hover:underline w-fit">
-                                <span onClick={() => setTab(2)}>Tekwan</span>
+                                <span onClick={() => setTab(2)}>Lenjer</span>
                             </Link>
                             <Link href={"/menu#menu"} className="hover:underline w-fit">
-                                <span onClick={() => setTab(3)}>Lenjer</span>
+                                <span onClick={() => setTab(3)}>Tekwan</span>
                             </Link>
                         </div>
                         <Image

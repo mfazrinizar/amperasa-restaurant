@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import SocialLink from "../ui/SocialLink";
 import Link from "next/link";
 import ScrollAnimation from "@/components/animation/ScrollAnimation";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import SocialLinkComp from "@/components/layout/SocialLinkComp";
 
 export default function ContactUs() {
   const isMobile = useMediaQuery(`(max-width: 768px)`);
@@ -14,7 +14,7 @@ export default function ContactUs() {
         <div className="lg:flex lg:items-center lg:-mx-6">
           <div className="lg:w-1/2 lg:mx-6">
             <h2 className="text-center lg:text-left text-neutral-100 heading-second">
-              <span className="text-primary-500">Contact Us</span> <br /> For More Info
+              <span className="text-primary-500 font-bold">Contact Us</span> <br /> For More Info
             </h2>
 
             <address className="flex flex-col items-center mt-6 space-y-8 lg:items-start lg:items-left lg:mt-8">
@@ -105,9 +105,7 @@ export default function ContactUs() {
                 Follow Us
               </p>
               <div className="flex items-center justify-center gap-2 lg:justify-start">
-                <SocialLink type="instagram" url="https://instagram.com/" />
-                <SocialLink type="linkedin" url="https://linkedin.com/" />
-                <SocialLink type="github" url="https://github.com/" />
+                <SocialLinkComp />
               </div>
             </section>
           </div>
