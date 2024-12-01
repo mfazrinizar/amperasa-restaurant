@@ -30,6 +30,12 @@ export default function Header() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  const handleMenuItemClick = () => {
+    setTimeout(() => {
+      setIsMenuOpen(false);
+    }, 1000);
+  };
+
   return (
     <>
       {/* Backdrop for shadowing with animation */}
@@ -78,7 +84,7 @@ export default function Header() {
                 {links.map(({ id, title, path }) => (
                   <Link
                     key={id}
-                    onClick={handleMenuToggle}
+                    onClick={pathname == path ? handleMenuItemClick : handleMenuToggle}
                     className={clsx(
                       "relative my-2 transition-colors duration-300 transform md:mx-4 md:my-0",
                       pathname == path

@@ -1,12 +1,14 @@
 // components/ForgotPassword.tsx
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordSchema } from "@/lib/validationSchemas";
 import { z } from "zod";
 import Link from "next/link";
 import Button from "../ui/Button";
+import { forgotPassword } from "@/lib/network/authQueries";
+import useToastSuccessOrFailed from "@/hooks/useToastSuccessOrFailed";
 
 type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
@@ -19,8 +21,28 @@ export default function ForgotPassword() {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const onSubmit = (data: ForgotPasswordFormData) => {
-    console.log(data);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSuccessful, setIsSuccessful] = useState<boolean | null>(null);
+
+  const resetSuccessState = () => {
+    setIsSuccessful(null);
+  };
+
+  useToastSuccessOrFailed(isSuccessful, isSuccessful ? "Password reset email sent. Please check your email." : "Failed to send password reset email. Please try again.", resetSuccessState);
+
+  const onSubmit = async (data: ForgotPasswordFormData) => {
+    setLoading(true);
+    setError(null);
+
+    const success = await forgotPassword(data.email);
+
+    setLoading(false);
+    setIsSuccessful(success);
+
+    if (!success) {
+      setError("Failed to send password reset email. Please try again.");
+    }
   };
 
   return (
@@ -39,8 +61,9 @@ export default function ForgotPassword() {
           />
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         </div>
-        <Button variant="primary" className="w-full p-2">
-          Reset Password
+        {error && <p className="text-red-500">{error}</p>}
+        <Button variant="primary" className="w-full p-2" isLoading={loading}>
+          {loading ? "Sending..." : "Reset Password"}
         </Button>
       </form>
       <div className="mt-4 text-center">

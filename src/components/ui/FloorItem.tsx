@@ -1,8 +1,13 @@
 // components/ui/FloorItem.tsx
 import Image, { StaticImageData } from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../ui/Button";
 import useMustBeLoggedInNotification from "@/hooks/useMustBeLoggedInNotification";
+import useUser from "@/hooks/useUser";
+import { createBookTable } from "@/lib/network/dashboardQueries";
+import { User } from "@/lib/types/userType";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 type Props = {
   title: string;
@@ -10,6 +15,7 @@ type Props = {
   description: string;
   imgSrc: StaticImageData | string;
   price: number;
+  floorNumber: number;
 };
 
 export default function FloorItem({
@@ -18,11 +24,30 @@ export default function FloorItem({
   imgSrc,
   description,
   price,
+  floorNumber,
 }: Props) {
+  const user = useUser();
   const { showLoginNotification } = useMustBeLoggedInNotification();
+  const [loading, setLoading] = useState(false);
 
-  const handleBookTable = () => {
-    showLoginNotification();
+  const handleBookTable = async () => {
+    setLoading(true);
+    if (!user) {
+      showLoginNotification();
+      return;
+    }
+
+    const success = await createBookTable(user.uid, floorNumber, price);
+
+    setLoading(false);
+
+    if (success) {
+      toast.success("Table booked successfully.");
+    } else {
+      toast.error("Failed to book table. Please try again.");
+    }
+
+    redirect("/dashboard");
   };
 
   return (
@@ -41,8 +66,8 @@ export default function FloorItem({
           <span className="ml-2 text-xl font-normal">IDR </span>
           {price}K
         </p>
-        <Button variant="primary" className="mt-4" onClick={handleBookTable}>
-          Book a Table
+        <Button variant="primary" className="mt-4" onClick={handleBookTable} isLoading={loading}>
+          {loading ? "Booking..." : "Book a Table"}
         </Button>
       </div>
 
