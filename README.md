@@ -1,3 +1,15 @@
+# AmpeRASA Restaurant
+
+## Live Demo
+
+Check out the live demo of the website:
+[AmpeRASA Restaurant](https://amperasa.mfazrinizar.com)
+
+## Repository
+
+You can find the source code on GitHub:
+[GitHub Repository](https://github.com/mfazrinizar/amperasa-restaurant)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -12,6 +24,11 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+
+Install dependencies (IMPORTANT):
+```bash
+npm install --force
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
