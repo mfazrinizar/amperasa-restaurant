@@ -1,12 +1,15 @@
 // components/Register.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/lib/validationSchemas";
 import { z } from "zod";
 import Link from "next/link";
 import Button from "../ui/Button";
+import { registerUser } from "@/lib/network/authQueries";
+import { useRouter } from "next/navigation";
+import useToastSuccessOrFailed from "@/hooks/useToastSuccessOrFailed";
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -19,8 +22,37 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log(data);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSuccessful, setIsSuccessful] = useState<boolean | null>(null);
+  const router = useRouter();
+
+  const resetSuccessState = () => {
+    setIsSuccessful(null);
+  };
+
+  useToastSuccessOrFailed(isSuccessful, isSuccessful ? "Registration successful. Please check your email to verify and login your account." : "Registration failed. Please try again.", resetSuccessState);
+
+  const onSubmit = async (data: RegisterFormData) => {
+    setLoading(true);
+    setError(null);
+
+    const user = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+    };
+
+    const success = await registerUser(user, data.email, data.password);
+
+    setLoading(false);
+    setIsSuccessful(success);
+
+    if (success) {
+      router.push("/login");
+    } else {
+      setError("Registration failed. Please try again.");
+    }
   };
 
   return (
@@ -69,8 +101,9 @@ export default function Register() {
           />
           {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
         </div>
-        <Button variant="primary" className="w-full p-2">
-          Register
+        {error && <p className="text-red-500">{error}</p>}
+        <Button variant="primary" className="w-full p-2" isLoading={loading}>
+          {loading ? "Registering..." : "Register"}
         </Button>
       </form>
       <div className="mt-4 text-center">

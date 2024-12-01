@@ -1,12 +1,15 @@
 // components/Login.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/lib/validationSchemas";
 import { z } from "zod";
 import Link from "next/link";
 import Button from "../ui/Button";
+import { signInWithEmail } from "@/lib/network/authQueries";
+import { useRouter } from "next/navigation";
+import useToastSuccessOrFailed from "@/hooks/useToastSuccessOrFailed";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
@@ -19,8 +22,33 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSuccessful, setIsSuccessful] = useState<boolean | null>(null);
+  const router = useRouter();
+
+  const resetSuccessState = () => {
+    setIsSuccessful(null);
+  };
+
+  useToastSuccessOrFailed(isSuccessful, isSuccessful ? "Login successful. Redirecting..." : "Login failed. Make sure your email is verified and please try again.", resetSuccessState);
+
+  const onSubmit = async (data: LoginFormData) => {
+    setLoading(true);
+    setError(null);
+
+    const success = await signInWithEmail(data.email, data.password);
+
+    // console.log(success);
+
+    setLoading(false);
+    setIsSuccessful(success);
+
+    if (success) {
+      router.push("/dashboard");
+    } else {
+      setError("Login failed. Please try again.");
+    }
   };
 
   return (
@@ -50,8 +78,9 @@ export default function Login() {
           />
           {errors.password && <p className="text-red-500">{errors.password.message}</p>}
         </div>
-        <Button variant="primary" className="w-full p-2">
-          Login
+        {error && <p className="text-red-500">{error}</p>}
+        <Button variant="primary" className="w-full p-2" isLoading={loading}>
+          {loading ? "Logging in..." : "Login"}
         </Button>
       </form>
       <div className="mt-4 text-center">

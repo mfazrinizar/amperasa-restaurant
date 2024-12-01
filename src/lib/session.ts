@@ -61,8 +61,6 @@ export async function createSession(uid: string, token: string, isAdmin: boolean
 
     // console.log("Setting USER_SESSION_NAME cookie:", signedUid);
     // console.log("Setting AUTH_COOKIE_NAME cookie:", signedToken);
-
-    redirect("/book");
 }
 
 export async function removeSession(isRedirect: boolean) {
