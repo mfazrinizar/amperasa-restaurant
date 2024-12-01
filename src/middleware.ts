@@ -6,6 +6,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { unsignCookie } from "@/lib/utils/crypto";
 
 const publicRoutes = [
+  "/",
   "/login",
   "/register",
   "/forgot-password",
@@ -16,7 +17,7 @@ const publicRoutes = [
   "/contact",
   "/error"
 ];
-const allowedRedirectionPaths = ["/", "/login", "/dashboard"];
+const allowedRedirectionPaths = ["/", "/login", "/dashboard", "/error"];
 
 const USER_SESSION_NAME = process.env.USER_SESSION_NAME!;
 const AUTH_COOKIE_NAME = process.env.AUTH_COOKIE_NAME!;
@@ -45,6 +46,9 @@ function isValidRedirectionPath(path: string): boolean {
 }
 
 export default async function middleware(request: NextRequest) {
+  console.log("Request URL:", request.nextUrl.toString());
+  console.log("Request Pathname:", request.nextUrl.pathname);
+
   const userSession = await verifyCookie(
     request.cookies.get(USER_SESSION_NAME)?.value,
     AUTH_COOKIE_SIGNATURE_KEY_CURRENT,
@@ -71,17 +75,17 @@ export default async function middleware(request: NextRequest) {
   // console.log("Admin session:", adminSession);
   // console.log("Admin token:", adminToken);
 
-  if (request.nextUrl.pathname.startsWith("/dashboard") && (!userSession || !userToken)) {
-    // if (request.cookies.get(USER_SESSION_NAME)?.value || request.cookies.get(AUTH_COOKIE_NAME)?.value) {
-    //   deleteCookie(NextResponse.next(), USER_SESSION_NAME);
-    //   deleteCookie(NextResponse.next(), AUTH_COOKIE_NAME);
-    // }
+  // if (request.nextUrl.pathname.startsWith("/menu") && (!userSession || !userToken)) {
+  //   // if (request.cookies.get(USER_SESSION_NAME)?.value || request.cookies.get(AUTH_COOKIE_NAME)?.value) {
+  //   //   deleteCookie(NextResponse.next(), USER_SESSION_NAME);
+  //   //   deleteCookie(NextResponse.next(), AUTH_COOKIE_NAME);
+  //   // }
 
-    const absoluteURL = new URL("/login", request.nextUrl.origin);
-    if (isValidRedirectionPath(absoluteURL.pathname)) {
-      return NextResponse.redirect(absoluteURL.toString());
-    }
-  }
+  //   const absoluteURL = new URL("/login", request.nextUrl.origin);
+  //   if (isValidRedirectionPath(absoluteURL.pathname)) {
+  //     return NextResponse.redirect(absoluteURL.toString());
+  //   }
+  // }
 
   // if (request.nextUrl.pathname.startsWith("/admin-dashboard") 
   //   // && (!adminSession || !adminToken)
@@ -97,12 +101,19 @@ export default async function middleware(request: NextRequest) {
   //   }
   // }
 
+  if (request.nextUrl.pathname.startsWith("/dashboard") && (!userSession || !userToken)) {
+    const absoluteURL = new URL("/login", request.nextUrl.origin);
+    if (isValidRedirectionPath(absoluteURL.pathname)) {
+      return NextResponse.redirect(absoluteURL.toString());
+    }
+  }
+
   if (
     !userSession &&
     // !adminSession &&
     !publicRoutes.includes(request.nextUrl.pathname)
   ) {
-    const absoluteURL = new URL("/", request.nextUrl.origin);
+    const absoluteURL = new URL("/error", request.nextUrl.origin);
     // console.log("Redirecting to:", absoluteURL.toString());
     if (isValidRedirectionPath(absoluteURL.pathname)) {
       return NextResponse.redirect(absoluteURL.toString());
@@ -129,15 +140,15 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  if (
-    // adminSession && adminToken && 
-    request.nextUrl.pathname === "/admin-login") {
-    const absoluteURL = new URL("/admin-dashboard", request.nextUrl.origin);
-    // console.log("Redirecting to /admin-dashboard:", absoluteURL.toString());
-    if (isValidRedirectionPath(absoluteURL.pathname)) {
-      return NextResponse.redirect(absoluteURL.toString());
-    }
-  }
+  // if (
+  //   // adminSession && adminToken && 
+  //   request.nextUrl.pathname === "/admin-login") {
+  //   const absoluteURL = new URL("/admin-dashboard", request.nextUrl.origin);
+  //   // console.log("Redirecting to /admin-dashboard:", absoluteURL.toString());
+  //   if (isValidRedirectionPath(absoluteURL.pathname)) {
+  //     return NextResponse.redirect(absoluteURL.toString());
+  //   }
+  // }
 
   // if (
   //   request.nextUrl.pathname.startsWith("/admin-dashboard") &&
@@ -158,13 +169,12 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!.+\\.[\\w]+$|_next).)",
-    "/(api|trpc)(.)",
-    // "/admin-dashboard",
-    // "/admin-dashboard/(.*)",
+    "/((?!.+\\.[\\w]+$|_next).*)",  
+    "/api/(.*)",
+    "/trpc/(.*)",
     "/dashboard",
     "/dashboard/(.*)",
     "/login",
-    // "/admin-login"
   ],
 };
+
