@@ -103,7 +103,7 @@ export default function DashboardBook({ pb = "md", pt = "md" }: Props) {
                         </div>
                     ) : bookTables.length === 0 ? (
                         <div className="flex flex-col items-center justify-center">
-                            <p className="text-center text-neutral-400 mt-4 mb-4">You haven't booked any tables.</p>
+                            <p className="text-center text-neutral-400 mt-4 mb-4">You haven&apos;t booked any tables.</p>
                             <LogoSVG height={128} width={128} bg={true} />
                         </div>
                     ) : (
