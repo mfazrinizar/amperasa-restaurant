@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/error",
-        destination: "/error", 
+        source: "/__/auth/:path(.*)",
+        destination: "https://amperasa-restaurant.firebaseapp.com/__/auth/:path*",
       },
     ];
   },
