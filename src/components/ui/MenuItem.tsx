@@ -13,7 +13,7 @@ export default function MenuItem({ price, title, description }: Props) {
         <h3 className="mb-2 text-xl font-medium">{title}</h3>
         <p>{description}</p>
       </div>
-      <p><span className="self-center text-xl font-medium">{price}.-</span></p>
+      <p><span className="self-center text-xl font-medium">IDR {price}K</span></p>
     </div>
   );
 }

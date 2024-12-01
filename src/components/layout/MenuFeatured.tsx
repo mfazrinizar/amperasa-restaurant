@@ -14,7 +14,7 @@ const menuItems = [
       price: 25,
       category: "Kapal Selam",
       imgScr: SelamImg,
-      title: "Pempek Kapal Selam",
+      title: "Pempek Kapal Selam Original",
       description: "A large fish cake filled with a whole egg, served with a tangy vinegar sauce.",
     },
     {
@@ -22,7 +22,7 @@ const menuItems = [
       price: 15,
       category: "Kulit",
       imgScr: KulitImg,
-      title: "Pempek Kulit",
+      title: "Pempek Kulit Original",
       description: "Crispy fish skin cakes, deep-fried to perfection, served with a spicy vinegar sauce.",
     },
     {
@@ -30,7 +30,7 @@ const menuItems = [
       price: 18,
       category: "Lenjer",
       imgScr: LenjerImg,
-      title: "Pempek Lenjer",
+      title: "Pempek Lenjer Original",
       description: "Long cylindrical fish cakes, steamed and then fried, served with a sweet and sour sauce.",
     },
     {
@@ -38,7 +38,7 @@ const menuItems = [
       price: 20,
       category: "Tekwan",
       imgScr: TekwanImg,
-      title: "Tekwan Oriental",
+      title: "Tekwan Original",
       description: "Fish ball soup with vermicelli, mushrooms, and jicama, served in a savory broth.",
     },
   ];
