@@ -18,10 +18,8 @@ export default function AboutMore() {
             />
 
             <div className="p-8 bg-white lg:p-16 rounded-custom--lg">
-              <h2 className="mb-4 heading-second font-bold text-neutral-900">
-                Our
-                <br />
-                History
+              <h2 className="mb-4 heading-second font-bold text-primary-500">
+                Our History
               </h2>
               <div className="space-y-4 text-neutral-600 ">
                 <p>

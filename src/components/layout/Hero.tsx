@@ -116,7 +116,7 @@ export default function Hero() {
                                 duration={0.5}
                                 variant="top-sm"
                             >
-                                <SocialLink type="instagram" url="https://instagram.com/" />
+                                <SocialLink type="instagram" url="https://instagram.com/mfazrinizar" />
                             </MotionAnimation>
                             <MotionAnimation
                                 type="spring"
@@ -124,7 +124,7 @@ export default function Hero() {
                                 duration={0.5}
                                 variant="top-sm"
                             >
-                                <SocialLink type="linkedin" url="https://linkedin.com/" />
+                                <SocialLink type="linkedin" url="https://linkedin.com/in/mfazrinizar" />
                             </MotionAnimation>
                             <MotionAnimation
                                 type="spring"
@@ -132,7 +132,7 @@ export default function Hero() {
                                 duration={0.5}
                                 variant="top-sm"
                             >
-                                <SocialLink type="github" url="https://github.com/" />
+                                <SocialLink type="github" url="https://github.com/mfazrinizar" />
                             </MotionAnimation>
 
                             <MotionAnimation
