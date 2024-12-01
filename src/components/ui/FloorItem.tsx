@@ -2,6 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import Button from "../ui/Button";
+import useMustBeLoggedInNotification from "@/hooks/useMustBeLoggedInNotification";
 
 type Props = {
   title: string;
@@ -18,6 +19,13 @@ export default function FloorItem({
   description,
   price,
 }: Props) {
+  const { showLoginNotification } = useMustBeLoggedInNotification();
+
+  const handleBookTable = () => {
+    // Trigger the notification
+    showLoginNotification();
+  };
+
   return (
     <section className="gap-8 lg:gap-16 lg:flex lg:items-center">
       <div className="lg:w-1/2">
@@ -34,7 +42,7 @@ export default function FloorItem({
           <span className="ml-2 text-xl font-normal">IDR </span>
           {price}K
         </p>
-        <Button variant="outlined" className="mt-4">
+        <Button variant="primary" className="mt-4" onClick={handleBookTable}>
           Book a Table
         </Button>
       </div>

@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import "../styles/main.scss";
+import { Toaster } from "@/components/ui/Toaster";
 
 export const metadata = {
   title: "AmpeRASA Restaurant",
@@ -16,6 +17,7 @@ export default function RootLayout({
       <body className="overflow-x-hidden">
         <Header />
         {children}
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );
