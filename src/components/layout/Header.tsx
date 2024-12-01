@@ -87,7 +87,7 @@ export default function Header() {
                 {links.map(({ id, title, path }) => (
                   <Link
                     key={id}
-                    onClick={pathname == path ? handleMenuItemClick : handleMenuToggle}
+                    onClick={pathname == path || (pathname === "/dashboard" && path === "/login" ) ? handleMenuItemClick : handleMenuToggle}
                     className={clsx(
                       "relative my-2 transition-colors duration-300 transform md:mx-4 md:my-0",
                       pathname == path
