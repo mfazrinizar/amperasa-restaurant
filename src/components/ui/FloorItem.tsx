@@ -5,7 +5,6 @@ import Button from "../ui/Button";
 import useMustBeLoggedInNotification from "@/hooks/useMustBeLoggedInNotification";
 import useUser from "@/hooks/useUser";
 import { createBookTable } from "@/lib/network/dashboardQueries";
-import { User } from "@/lib/types/userType";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 
@@ -34,6 +33,7 @@ export default function FloorItem({
     setLoading(true);
     if (!user) {
       showLoginNotification();
+      setLoading(false);
       return;
     }
 
