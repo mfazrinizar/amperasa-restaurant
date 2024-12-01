@@ -152,7 +152,7 @@ export default function DashboardBook({ pb = "md", pt = "md" }: Props) {
                     )}
 
                     {lastVisible && (
-                        <Button variant="primary" className="mt-8" onClick={() => fetchBookTables(lastVisible)}>
+                        <Button variant="neutral" className="mt-8" onClick={() => fetchBookTables(lastVisible)}>
                             Load More
                         </Button>
                     )}
