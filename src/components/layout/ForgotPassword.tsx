@@ -26,7 +26,7 @@ export default function ForgotPassword() {
   return (
     <div className="container container--xs">
       <h2 className="mb-8 text-3xl font-bold text-center text-neutral-900 sm:text-4xl lg:text-5xl">
-        Forgot Password
+        Forgot <span className="text-primary-500">Password?</span>
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
