@@ -75,3 +75,24 @@ a {
 .heading-second {
   @apply text-2xl md:text-3xl font-brush;
 }
+
+body.overflow-hidden {
+  overflow: hidden;
+  height: 100%;
+}
+
+html.overflow-hidden {
+  overflow: hidden;
+  height: 100%;
+}
+
+.mobile-menu {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; 
+  overflow-y: auto; 
+  z-index: 50; 
+  background-color: rgba(0, 0, 0, 0.95); 
+}
