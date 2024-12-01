@@ -61,7 +61,6 @@ export default function MenuFeatured({ pb = "md", pt = "md" }: Props) {
           </h1>
           <WaveSVG />
 
-          {/* TODO - change to slider */}
           <section className="mt-8 space-y-8 lg:mt-12">
             {menuItems.map(({ id, price, imgSrc, title, description }) => {
               return (

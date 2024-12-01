@@ -6,12 +6,15 @@ import LogoSVG from "@/components/svg/LogoSVG";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import Hamburger from "@/components/ui/Hamburger";
+import useUserNav from "@/hooks/useUser";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+
+  const user = useUserNav();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +96,7 @@ export default function Header() {
                     )}
                     href={path}
                   >
-                    {title}
+                     {title === "Login" && user ? "Dashboard" : title}
                     {pathname == path && (
                       <div className="absolute w-5 h-[3px] -translate-x-1/2 rounded-custom -bottom-2 left-1/2 bg-primary-400"></div>
                     )}
