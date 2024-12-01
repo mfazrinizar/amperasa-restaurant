@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import links from "@/lib/link";
+import { links } from "@/lib/link";
 import React, { useEffect, useState } from "react";
 import LogoSVG from "@/components/svg/LogoSVG";
 import clsx from "clsx";

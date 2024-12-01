@@ -8,17 +8,17 @@ import useMenuTabStore from "@/hooks/useMenuTabStore";
 type Props = {
   imgSrc: StaticImageData;
   title: string;
-  width: number;
-  height: number;
+  // width: number;
+  // height: number;
   span?: number;
   tabId: number;
 };
 
-export default function CategoryTile({
+export default function ShowcaseTile({
   imgSrc,
   title,
-  width = 384,
-  height = 256,
+  // width = 384,
+  // height = 256,
   span = 1,
   tabId,
 }: Props) {
@@ -43,7 +43,7 @@ export default function CategoryTile({
           href={"/menu#menu"}
           className="z-30 flex flex-row items-center gap-1 text-base md:text-xl hover:underline"
         >
-          Discover{" "}
+          Explore{" "}
           <svg
             className="w-3.5 h-3.5 ms-2 rtl:rotate-180 translate-x-0 "
             aria-hidden="true"
@@ -63,8 +63,8 @@ export default function CategoryTile({
       </span>
       <Image
         className="w-full h-full transition duration-500 group-hover:scale-110"
-        width={width}
-        height={height}
+        // width={width}
+        // height={height}
         src={imgSrc}
         loading="lazy"
         alt={title}
