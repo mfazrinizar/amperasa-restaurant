@@ -150,7 +150,7 @@ export default function Menu({ pb = "md", pt = "md" }: Props) {
       <div className="container container--xs">
         <div className="mx-auto">
           <h2 className="relative mb-4 text-4xl font-bold text-center font-brush text-neutral-900">
-            <span className="relative z-10">Our Menu</span>
+            <span className="relative text-primary-500 z-10">Our Menu</span>
           </h2>
         </div>
 

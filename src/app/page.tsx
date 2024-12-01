@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <Showcase />
       <Testimonial />
-      <Divider className="m-0 p-0" /> {/* Adjust the margin and padding */}
+      <Divider className="m-0 p-0" /> 
       <MenuFeaturedSwipes />
       <ContactUs />
       <Footer />

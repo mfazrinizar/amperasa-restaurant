@@ -1,10 +1,10 @@
+// components/layout/FloorSwipes.tsx
 "use client";
 import React from "react";
-import MenuFeaturedItem from "../ui/MenuFeaturedItem";
-import SelamImg from "@public/menu/selam.webp";
-import KulitImg from "@public/menu/kulit.webp";
-import LenjerImg from "@public/menu/lenjer.webp";
-import TekwanImg from "@public/menu/tekwan.webp";
+import FloorItem from "../ui/FloorItem";
+import Floor1Img from "@public/book/floor_1.webp";
+import Floor2Img from "@public/book/floor_2.webp";
+import Floor3Img from "@public/book/floor_3.webp";
 import ScrollAnimation from "../animation/ScrollAnimation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -14,56 +14,48 @@ import "swiper/css/navigation";
 import { paddingBot, paddingTop } from "@/lib/utils/props";
 import clsx from "clsx";
 
-const menuItems = [
-    {
-      id: 1,
-      price: 25,
-      category: "Kapal Selam",
-      imgSrc: SelamImg,
-      title: "Pempek Kapal Selam Original",
-      description: "A large fish cake filled with a whole egg, served with a tangy vinegar sauce.",
-    },
-    {
-      id: 2,
-      price: 15,
-      category: "Kulit",
-      imgSrc: KulitImg,
-      title: "Pempek Kulit Original",
-      description: "Crispy fish skin cakes, deep-fried to perfection, served with a spicy vinegar sauce.",
-    },
-    {
-      id: 3,
-      price: 18,
-      category: "Lenjer",
-      imgSrc: LenjerImg,
-      title: "Pempek Lenjer Original",
-      description: "Long cylindrical fish cakes, steamed and then fried, served with a sweet and sour sauce.",
-    },
-    {
-      id: 4,
-      price: 20,
-      category: "Tekwan",
-      imgSrc: TekwanImg,
-      title: "Tekwan Original",
-      description: "Fish ball soup with vermicelli, mushrooms, and jicama, served in a savory broth.",
-    },
-  ];
+const floors = [
+  {
+    id: 1,
+    price: 25,
+    category: "Floor",
+    imgSrc: Floor1Img,
+    title: "Floor 1",
+    description: "Welcome to Floor 1, where you can enjoy the authentic taste of Palembang with our Pempek Kapal Selam Original. A large fish cake filled with a whole egg, served with a tangy vinegar sauce. Perfect for those who love traditional flavors.",
+  },
+  {
+    id: 2,
+    price: 30,
+    category: "Floor",
+    imgSrc: Floor2Img,
+    title: "Floor 2",
+    description: "Welcome to Floor 2, where you can indulge in the crispy delight of Pempek Kulit Original. These fish skin cakes are deep-fried to perfection and served with a spicy vinegar sauce. A must-try for those who enjoy a bit of crunch and spice.",
+  },
+  {
+    id: 3,
+    price: 35,
+    category: "Floor",
+    imgSrc: Floor3Img,
+    title: "Floor 3",
+    description: "Welcome to Floor 3, where you can savor the unique taste of Pempek Lenjer Original. Long cylindrical fish cakes, steamed and then fried, served with a sweet and sour sauce. Ideal for those who appreciate a balance of flavors.",
+  },
+];
 
 type Props = {
   pb?: "md" | "xl";
   pt?: "md" | "xl";
 };
 
-export default function MenuFeaturedSwipes({ pb = "md", pt = "md" }: Props) {
+export default function FloorSwipes({ pb = "md", pt = "md" }: Props) {
   return (
     <section
-      id="MenuFeaturedSwipes"
+      id="FloorSwipes"
       className={clsx("mt-0 bg-neutral-900 featured-section", paddingTop[pt], paddingBot[pb])}
     >
       <ScrollAnimation className="container container--sm">
         <div className="mx-auto">
           <h2 className="relative mb-4 text-center heading-second font-bold text-neutral-200">
-            <span className="relative z-10">Featured <span className="text-primary-500">Cuisines</span></span>
+            <span className="relative z-10">Book a Table</span>
           </h2>
           <div className="flex items-center justify-center w-full">
             <svg
@@ -93,10 +85,10 @@ export default function MenuFeaturedSwipes({ pb = "md", pt = "md" }: Props) {
               navigation={true}
               modules={[Navigation]}
             >
-              {menuItems.map(({ id, price, imgSrc, title, description }) => {
+              {floors.map(({ id, price, imgSrc, title, description }) => {
                 return (
                   <SwiperSlide key={id}>
-                    <MenuFeaturedItem
+                    <FloorItem
                       price={price}
                       imgSrc={imgSrc}
                       title={title}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "amperasa-restaurant": "file:",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -17,8 +18,11 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-feather": "^2.0.10",
+    "react-hook-form": "^7.53.2",
     "sass": "^1.81.0",
+    "sonner": "^1.7.0",
     "swiper": "^11.1.15",
+    "zod": "^3.23.8",
     "zustand": "^5.0.1"
   },
   "devDependencies": {

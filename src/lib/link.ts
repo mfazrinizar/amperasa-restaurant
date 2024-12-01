@@ -1,8 +1,11 @@
+
 const links = [
     { id: 0, title: "Home", path: "/" },
     { id: 1, title: "Menu", path: "/menu" },
     { id: 2, title: "About", path: "/about" },
     { id: 3, title: "Contact", path: "/contact" },
+    { id: 4, title: "Book", path: "/book" },
+    { id: 5, title: "Login", path: "/login" },
   ];
 
 const socialLinks = [
