@@ -8,7 +8,7 @@ import LogoSVG from "@/components/svg/LogoSVG";
 import Image from "next/image";
 import { useAnimation, motion } from "framer-motion";
 import SocialLink from "@/components/ui/SocialLink";
-import MotionAnimation from "@/components/layout/MotionAnimation";
+import MotionAnimation from "@/components/animation/MotionAnimation";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
 

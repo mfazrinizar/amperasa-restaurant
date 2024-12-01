@@ -14,7 +14,7 @@ type Props = {
   tabId: number;
 };
 
-export default function CategoryTile({
+export default function ShowcaseTile({
   imgSrc,
   title,
   width = 384,
@@ -43,7 +43,7 @@ export default function CategoryTile({
           href={"/menu#menu"}
           className="z-30 flex flex-row items-center gap-1 text-base md:text-xl hover:underline"
         >
-          Discover{" "}
+          Explore{" "}
           <svg
             className="w-3.5 h-3.5 ms-2 rtl:rotate-180 translate-x-0 "
             aria-hidden="true"
