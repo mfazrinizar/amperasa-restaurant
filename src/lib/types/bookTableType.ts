@@ -8,5 +8,6 @@ export type BookTable = {
     is_verified: boolean;
     table_number?: number;
     table_floor: number;
+    price: number;
     date: Timestamp;
 };

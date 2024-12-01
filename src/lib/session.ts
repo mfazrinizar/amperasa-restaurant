@@ -69,6 +69,6 @@ export async function removeSession(isRedirect: boolean) {
 
 
     if (isRedirect) {
-        redirect("/");
+        redirect("/login");
     }
 }

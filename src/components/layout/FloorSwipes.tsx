@@ -93,6 +93,7 @@ export default function FloorSwipes({ pb = "md", pt = "md" }: Props) {
                       imgSrc={imgSrc}
                       title={title}
                       description={description}
+                      floorNumber={id}
                     />
                   </SwiperSlide>
                 );

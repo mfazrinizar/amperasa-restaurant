@@ -3,14 +3,14 @@
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase"; // Adjust the import path to your Firebase setup
 import { BookTable } from "@/lib/types/bookTableType";
-import { User } from "@/lib/types/userType";
 
-export const createBookTable = async (user: User, floorNumber: number): Promise<boolean> => {
+export const createBookTable = async (userId: string, floorNumber: number, price: number): Promise<boolean> => {
   try {
     const bookTableData: BookTable = {
-      user_id: user.id!,
+      user_id: userId,
       is_verified: false,
       table_floor: floorNumber,
+      price: price,
       date: serverTimestamp() as Timestamp,
     };
 
