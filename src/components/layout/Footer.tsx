@@ -1,9 +1,14 @@
+"use client"
+
 import Link from "next/link";
 import React from "react";
 import LogoSVG from "@/components/svg/LogoSVG";
 import { links } from "@/lib/link";
+import useUserNav from "@/hooks/useUser";
 
 export default function Footer() {
+    const user = useUserNav();
+
     return (
         <footer id="Footer" className="py-6 bg-neutral-900">
             <div className="container container--sm">
@@ -22,7 +27,7 @@ export default function Footer() {
                         {links.map(({ id, title, path }) => {
                             return (
                                 <Link key={id} className="hover:underline" href={path}>
-                                    {title}
+                                    {title === "Login" && user ? "Dashboard" : title}
                                 </Link>
                             );
                         })}

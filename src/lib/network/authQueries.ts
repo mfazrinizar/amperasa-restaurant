@@ -19,6 +19,7 @@ import {
     updatePassword,
     reauthenticateWithCredential,
     sendPasswordResetEmail,
+    updateProfile,
   } from "firebase/auth";
   import { createSession, removeSession } from "@/lib/session";
   
@@ -33,6 +34,11 @@ import {
         email,
         password,
       );
+
+      await updateProfile(userCredential.user, {
+        displayName: user.name,
+      });
+
       await sendEmailVerification(userCredential.user);
       const userRef = doc(db, "users", userCredential.user.uid);
       user.id = userCredential.user.uid;
