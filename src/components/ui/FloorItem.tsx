@@ -22,7 +22,6 @@ export default function FloorItem({
   const { showLoginNotification } = useMustBeLoggedInNotification();
 
   const handleBookTable = () => {
-    // Trigger the notification
     showLoginNotification();
   };
 
