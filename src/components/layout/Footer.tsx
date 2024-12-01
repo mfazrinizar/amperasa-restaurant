@@ -35,7 +35,7 @@ export default function Footer() {
                         >
                             M. Fazri Nizar | AmpeRASA
                         </Link>
-                        {" "}© 2024 All Rights Reserved.
+                        {" "}© 2024 All Rights Reserved
                     </span>
                 </div>
             </div>

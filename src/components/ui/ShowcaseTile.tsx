@@ -8,8 +8,8 @@ import useMenuTabStore from "@/hooks/useMenuTabStore";
 type Props = {
   imgSrc: StaticImageData;
   title: string;
-  width: number;
-  height: number;
+  // width: number;
+  // height: number;
   span?: number;
   tabId: number;
 };
@@ -17,8 +17,8 @@ type Props = {
 export default function ShowcaseTile({
   imgSrc,
   title,
-  width = 384,
-  height = 256,
+  // width = 384,
+  // height = 256,
   span = 1,
   tabId,
 }: Props) {
@@ -63,8 +63,8 @@ export default function ShowcaseTile({
       </span>
       <Image
         className="w-full h-full transition duration-500 group-hover:scale-110"
-        width={width}
-        height={height}
+        // width={width}
+        // height={height}
         src={imgSrc}
         loading="lazy"
         alt={title}

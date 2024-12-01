@@ -38,30 +38,30 @@ export default function Showcase({ pb = "md", pt = "md" }: Props) {
                         tabId={1}
                         title={"Kapal Selam"}
                         imgSrc={KapalSelamImg}
-                        width={384}
-                        height={384}
+                        // width={384}
+                        // height={384}
                     />
                     <ShowcaseTile
                         tabId={3}
                         span={2}
                         title={"Lenjer"}
                         imgSrc={LenjerImg}
-                        width={384}
-                        height={682}
+                        // width={384}
+                        // height={682}
                     />
                     <ShowcaseTile
                         tabId={0}
                         title={"Kulit"}
                         imgSrc={KulitImg}
-                        width={384}
-                        height={256}
+                        // width={384}
+                        // height={256}
                     />
                     <ShowcaseTile
                         tabId={2}
                         title={"Tekwan"}
                         imgSrc={TekwanImg}
-                        width={384}
-                        height={256}
+                        // width={384}
+                        // height={256}
                     />
                     <div className="relative w-full h-full bg-primary-500 text-neutral-100">
                         <div className="flex flex-col justify-center h-full mx-auto text-base font-medium sm:text-lg w-fit sm:mx-0 sm:px-4 lg:px-8 xl:px-16 sm:gap-2 md:gap-0 xl:gap-2 xl:text-2xl">

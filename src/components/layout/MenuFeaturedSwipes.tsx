@@ -58,11 +58,11 @@ export default function MenuFeaturedSwipes({ pb = "md", pt = "md" }: Props) {
   return (
     <section
       id="MenuFeaturedSwipes"
-      className={clsx("bg-neutral-900 featured-section", paddingTop[pt], paddingBot[pb])}
+      className={clsx("mt-0 bg-neutral-900 featured-section", paddingTop[pt], paddingBot[pb])}
     >
       <ScrollAnimation className="container container--sm">
         <div className="mx-auto">
-          <h2 className="relative mb-4 text-center heading-second text-neutral-200">
+          <h2 className="relative mb-4 text-center heading-second font-bold text-neutral-200">
             <span className="relative z-10">Featured</span>
           </h2>
           <div className="flex items-center justify-center w-full">
