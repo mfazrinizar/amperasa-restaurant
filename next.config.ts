@@ -1,12 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
+  async rewrites() {
     return [
       {
-        source: '/404',
-        destination: '/error',
-        permanent: false,
+        source: "/error",
+        destination: "/error", 
       },
     ];
   },

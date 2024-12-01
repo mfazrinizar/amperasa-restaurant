@@ -1,17 +1,14 @@
-// src/_error.tsx
+// src/app/error/page.tsx
 
 import Footer from "@/components/layout/Footer";
 import MainWrapper from "@/components/layout/MainWrapper";
 import LogoSVG from "@/components/svg/LogoSVG";
 import Button from "@/components/ui/Button";
-import { NextPageContext } from "next";
 import Link from "next/link";
 
-type ErrorPageProps = {
-  statusCode: number;
-};
+const ErrorPage = ({ searchParams }: { searchParams: { statusCode?: string } })  => {
+  const statusCode = searchParams?.statusCode || "404";
 
-const ErrorPage = ({ statusCode }: ErrorPageProps) => {
   return (
     <MainWrapper className="flex flex-col min-h-screen bg-neutral-900">
       <div className="container flex flex-col items-center justify-center h-screen space-y-4">
@@ -22,19 +19,12 @@ const ErrorPage = ({ statusCode }: ErrorPageProps) => {
           <b>Error {statusCode}</b>
         </p>
         <Link href="/">
-          <Button variant="outlined">
-            Go Back Home
-          </Button>
+          <Button variant="outlined">Go Back Home</Button>
         </Link>
       </div>
       <Footer />
     </MainWrapper>
   );
-};
-
-ErrorPage.getInitialProps = ({ res, err }: NextPageContext) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
 };
 
 export default ErrorPage;
