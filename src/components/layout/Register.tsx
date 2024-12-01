@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/lib/validationSchemas";
 import { z } from "zod";
+import Link from "next/link";
+import Button from "../ui/Button";
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -67,10 +69,16 @@ export default function Register() {
           />
           {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
         </div>
-        <button type="submit" className="w-full p-2 bg-primary-500 text-white rounded">
+        <Button variant="primary" className="w-full p-2">
           Register
-        </button>
+        </Button>
       </form>
+      <div className="mt-4 text-center">
+        <span className="text-neutral-600">Already have an account? </span>
+        <Link href="/login" className="text-primary-500 hover:underline">
+          Login
+        </Link>
+      </div>
     </div>
   );
 }

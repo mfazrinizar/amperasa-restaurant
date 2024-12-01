@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordSchema } from "@/lib/validationSchemas";
 import { z } from "zod";
+import Link from "next/link";
+import Button from "../ui/Button";
 
 type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
@@ -37,10 +39,16 @@ export default function ForgotPassword() {
           />
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         </div>
-        <button type="submit" className="w-full p-2 bg-primary-500 text-white rounded">
+        <Button variant="primary" className="w-full p-2">
           Reset Password
-        </button>
+        </Button>
       </form>
+      <div className="mt-4 text-center">
+        <span className="text-neutral-600">Remember your password? </span>
+        <Link href="/login" className="text-primary-500 hover:underline">
+          Login
+        </Link>
+      </div>
     </div>
   );
 }
