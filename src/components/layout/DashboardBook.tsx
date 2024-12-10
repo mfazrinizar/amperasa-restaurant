@@ -20,7 +20,7 @@ const floors = [
     {
         id: 1,
         price: 25,
-        category: "Floor",
+        category: "Table",
         imgSrc: Floor1Img,
         title: "Floor 1",
         description: "Welcome to Floor 1, where you can enjoy the authentic taste of Palembang with our Pempek Kapal Selam Original. A large fish cake filled with a whole egg, served with a tangy vinegar sauce. Perfect for those who love traditional flavors.",
@@ -28,7 +28,7 @@ const floors = [
     {
         id: 2,
         price: 30,
-        category: "Floor",
+        category: "Table",
         imgSrc: Floor2Img,
         title: "Floor 2",
         description: "Welcome to Floor 2, where you can indulge in the crispy delight of Pempek Kulit Original. These fish skin cakes are deep-fried to perfection and served with a spicy vinegar sauce. A must-try for those who enjoy a bit of crunch and spice.",
@@ -36,7 +36,7 @@ const floors = [
     {
         id: 3,
         price: 35,
-        category: "Floor",
+        category: "Table",
         imgSrc: Floor3Img,
         title: "Floor 3",
         description: "Welcome to Floor 3, where you can savor the unique taste of Pempek Lenjer Original. Long cylindrical fish cakes, steamed and then fried, served with a sweet and sour sauce. Ideal for those who appreciate a balance of flavors.",
@@ -108,7 +108,7 @@ export default function DashboardBook({ pb = "md", pt = "md" }: Props) {
                         </div>
                     ) : (
                         <section className="mt-8 space-y-8 lg:mt-12">
-                            {bookTables.map(({ id, is_verified, date, table_floor, table_number, price }) => {
+                            {bookTables.map(({ id, is_verified, date, table_floor, table_number, price, booked_at }) => {
                                 const floor = floors.find((floor) => floor.id === table_floor);
                                 return (
                                     <div key={id} className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
@@ -130,7 +130,10 @@ export default function DashboardBook({ pb = "md", pt = "md" }: Props) {
                                                 {is_verified ? `Table Number: ${table_number}` : "Not Verified"}
                                             </p>
                                             <p className="text-lg text-neutral-400">
-                                                Date: {new Date(date.seconds * 1000).toLocaleDateString()}
+                                                Date: {new Date(date.seconds * 1000).toLocaleDateString()} |{new Date(date.seconds * 1000).toLocaleTimeString()}
+                                            </p>
+                                            <p className="text-lg text-neutral-400">
+                                                Booked at: {new Date(booked_at.seconds * 1000).toLocaleDateString()} |{new Date(booked_at.seconds * 1000).toLocaleTimeString()}
                                             </p>
                                             <Button variant="outlined" className="mt-4" onClick={() => handleCancelBooking(id!)} >
                                                 Cancel Booking
