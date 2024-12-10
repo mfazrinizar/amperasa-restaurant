@@ -12,17 +12,26 @@ const useUserNav = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
+
         try {
-          const response = await fetch('/api/verify-token');
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          const response = await fetch('/api/verify-token', {
+            credentials: 'include',
+          });
+
           if (response.status === 200) {
             setUser(currentUser);
           } else {
+            toast.error("Your session has expired. Please login again.");
             await auth.signOut();
             await removeSession(true);
             setUser(null);
-            toast.error("Your session has expired. Please login again.");
           }
         } catch (error) {
+          // console.log("Current cookies:", document.cookie);
+
+          // console.log("Error verifying token cookie: ", error);
           await auth.signOut();
           setUser(null);
         }

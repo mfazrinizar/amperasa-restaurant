@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import Button from "../ui/Button";
 import useMustBeLoggedInNotification from "@/hooks/useMustBeLoggedInNotification";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/useUserFooter";
 import { createBookTable } from "@/lib/network/dashboardQueries";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";

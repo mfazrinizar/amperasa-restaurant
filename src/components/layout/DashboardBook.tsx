@@ -1,9 +1,9 @@
 // components/DashboardBook.tsx
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getUserBookTables, cancelBookTable } from "@/lib/network/dashboardQueries";
 import { useRouter } from "next/navigation";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/useUserHeader";
 import Button from "@/components/ui/Button";
 import { toast } from "sonner";
 import Image from "next/image";
@@ -55,20 +55,20 @@ export default function DashboardBook({ pb = "md", pt = "md" }: Props) {
     const [lastVisible, setLastVisible] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (user) {
-            fetchBookTables();
-        }
-    }, [user]);
-
-    const fetchBookTables = async (lastDoc: any = null) => {
+    const fetchBookTables = useCallback(async (lastDoc: any = null) => {
         setLoading(true);
         if (!user) return;
         const { bookTables, lastVisible } = await getUserBookTables(user.uid, lastDoc);
         setBookTables((prev) => [...prev, ...bookTables]);
         setLastVisible(lastVisible);
         setLoading(false);
-    };
+      }, [user]);
+
+    useEffect(() => {
+        if (user) {
+          fetchBookTables();
+        }
+      }, [fetchBookTables, user]);
 
     const handleCancelBooking = async (bookTableId: string) => {
         if (!user) return;

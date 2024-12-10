@@ -6,16 +6,16 @@ import { unsignCookie } from "@/lib/utils/crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 async function verifyCookie(
-    value: string | undefined,
-    currentKey: string,
-    previousKey: string,
-  ) {
-    if (!value) return "";
-    const unsignedValue =
-      (await unsignCookie(value, currentKey)) ||
-      (await unsignCookie(value, previousKey));
-    return unsignedValue || "";
-  }
+  value: string | undefined,
+  currentKey: string,
+  previousKey: string,
+) {
+  if (!value) return "";
+  const unsignedValue =
+    (await unsignCookie(value, currentKey)) ||
+    (await unsignCookie(value, previousKey));
+  return unsignedValue || "";
+}
 
 export async function GET(request: NextRequest) {
   const USER_SESSION_NAME = process.env.USER_SESSION_NAME!;
@@ -27,6 +27,8 @@ export async function GET(request: NextRequest) {
   const ADMIN_COOKIE_NAME = process.env.ADMIN_COOKIE_NAME!;
   const ADMIN_COOKIE_SIGNATURE_KEY_CURRENT = process.env.ADMIN_COOKIE_SIGNATURE_KEY_CURRENT!;
   const ADMIN_COOKIE_SIGNATURE_KEY_PREVIOUS = process.env.ADMIN_COOKIE_SIGNATURE_KEY_PREVIOUS!;
+
+  // console.log("Cookies received:", request.cookies);
 
   const userSession = await verifyCookie(
     request.cookies.get(USER_SESSION_NAME)?.value,
@@ -48,11 +50,10 @@ export async function GET(request: NextRequest) {
     ADMIN_COOKIE_SIGNATURE_KEY_CURRENT,
     ADMIN_COOKIE_SIGNATURE_KEY_PREVIOUS,
   );
-  
+
   if ((!userSession || !userToken) && (!adminSession || !adminToken)) {
     return NextResponse.json({ error: "Invalid token" }, { status: 403 });
   }
 
   return NextResponse.json({ message: "OK" }, { status: 200 });
 }
-

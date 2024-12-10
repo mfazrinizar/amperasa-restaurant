@@ -101,11 +101,16 @@ import {
       }
   
       const customToken = await user.getIdToken();
-  
-      await createSession(user.uid, customToken, false);
-  
-      // console.log('User signed in and session created successfully:', user.uid);
-      return true;
+    
+      const sessionCreated = await createSession(user.uid, customToken, false);
+
+      if (sessionCreated) {
+        // console.log('User signed in with email successfully');
+        return true;  
+      } else {
+        // console.error('Error creating session');
+        return false;
+      }
     } catch (error) {
       // console.error('Error signing in with email:', error);
       return false;

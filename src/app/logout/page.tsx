@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { logoutUser } from "@/lib/network/authQueries";
 import { toast } from "sonner";
@@ -9,8 +9,13 @@ import LoadingSpinner from "@/components/ui/LoadingSpinner";
 export default function Page() {
     const router = useRouter();
     const [isLoggingOut, setIsLoggingOut] = useState(true);
+    const hasLoggedOut = useRef(false);
 
     const handleLogout = useCallback(async () => {
+        if (hasLoggedOut.current) return;
+
+        hasLoggedOut.current = true;
+
         try {
             const loggedOut = await logoutUser();
 
