@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import LogoSVG from "@/components/svg/LogoSVG";
 import { links } from "@/lib/link";
-import useUserNav from "@/hooks/useUser";
+import useUserNav from "@/hooks/useUserFooter";
 
 export default function Footer() {
     const user = useUserNav();

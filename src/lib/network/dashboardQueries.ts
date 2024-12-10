@@ -4,14 +4,15 @@ import { collection, addDoc, query, where, getDocs, deleteDoc, doc, serverTimest
 import { db } from "@/lib/firebase"; // Adjust the import path to your Firebase setup
 import { BookTable } from "@/lib/types/bookTableType";
 
-export const createBookTable = async (userId: string, floorNumber: number, price: number): Promise<boolean> => {
+export const createBookTable = async (userId: string, floorNumber: number, price: number, date: Timestamp): Promise<boolean> => {
   try {
     const bookTableData: BookTable = {
       user_id: userId,
       is_verified: false,
       table_floor: floorNumber,
       price: price,
-      date: serverTimestamp() as Timestamp,
+      date: date,
+      booked_at: Timestamp.now(),
     };
 
     await addDoc(collection(db, "book_table"), bookTableData);

@@ -10,4 +10,5 @@ export type BookTable = {
     table_floor: number;
     price: number;
     date: Timestamp;
+    booked_at: Timestamp;
 };
